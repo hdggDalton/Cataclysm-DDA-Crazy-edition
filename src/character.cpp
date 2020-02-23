@@ -626,6 +626,11 @@ void Character::recalc_hp()
         elem = 60 + str_max * 3 + hp_adjustment;
         elem *= hp_mod;
     }
+	new_max_hp[hp_head] *= 0.5; // try reducing health for head and limbs
+	new_max_hp[hp_arm_l] *= 0.6; // head has 50% base hp, arms 60%, legs 70%
+	new_max_hp[hp_arm_r] *= 0.6;
+	new_max_hp[hp_leg_l] *= 0.7;
+	new_max_hp[hp_leg_r] *= 0.7;
     if( has_trait( trait_GLASSJAW ) ) {
         new_max_hp[hp_head] *= 0.8;
     }
