@@ -85,7 +85,8 @@
     "items": [
       [ "hammer", 20 ],
       [ "wrench", 20 ],
-      [ "hammer_sledge", 20 ],
+      [ "hammer_sledge", 10 ],
+      [ "hammer_sledge_short", 10 ],
       [ "pipe", 20 ],
       [ "bat", 20 ],
       [ "bat_metal", 20 ],
@@ -142,7 +143,7 @@
   {
     "type": "item_group",
     "id": "NC_ARSONIST_launcher",
-    "items": [ [ "flamethrower", 50 ], [ "flamethrower_simple", 25 ] ]
+    "items": [ [ "flamethrower", 50 ] ]
   },
   {
     "type": "item_group",
@@ -157,7 +158,6 @@
       [ "gloves_fingerless", 30 ],
       [ "mask_hockey", 20 ],
       [ "flamethrower_crude", 20 ],
-      [ "flamethrower_simple", 20 ],
       [ "pipebomb", 40 ],
       [ "molotov", 100 ],
       [ "ref_lighter", 30 ],
@@ -166,8 +166,7 @@
       [ "firecracker_pack", 50 ],
       [ "firecracker", 30 ],
       [ "dynamite", 50 ],
-      [ "rebar", 100 ],
-      [ "matchbomb", 50 ]
+      [ "rebar", 100 ]
     ]
   }
 ]

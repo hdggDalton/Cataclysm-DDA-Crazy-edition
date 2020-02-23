@@ -1,5 +1,7 @@
 #include "loading_ui.h"
 
+#include <memory>
+
 #include "color.h"
 #include "output.h"
 #include "ui.h"
@@ -19,7 +21,7 @@ extern bool test_mode;
 loading_ui::loading_ui( bool display )
 {
     if( display && !test_mode ) {
-        menu.reset( new uilist );
+        menu = std::make_unique<uilist>();
         menu->settext( _( "Loading" ) );
     }
 }
@@ -49,7 +51,9 @@ void loading_ui::proceed()
             menu->entries[menu->selected].text_color = c_green;
         }
 
-        menu->scrollby( 1 );
+        if( menu->selected + 1 < static_cast<int>( menu->entries.size() ) ) {
+            menu->scrollby( 1 );
+        }
     }
 
     show();

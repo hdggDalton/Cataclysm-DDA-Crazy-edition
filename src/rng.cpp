@@ -1,9 +1,7 @@
 #include "rng.h"
 
+#include <cmath>
 #include <chrono>
-#include <climits>
-#include <cstdlib>
-#include <algorithm>
 #include <utility>
 
 #include "calendar.h"

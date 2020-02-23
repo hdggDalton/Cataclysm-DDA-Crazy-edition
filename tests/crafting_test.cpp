@@ -1,4 +1,4 @@
-#include <limits.h>
+#include <climits>
 #include <sstream>
 #include <algorithm>
 #include <list>
@@ -14,12 +14,10 @@
 #include "map.h"
 #include "map_helpers.h"
 #include "npc.h"
-#include "player.h"
 #include "player_helpers.h"
 #include "recipe_dictionary.h"
 #include "calendar.h"
 #include "cata_utility.h"
-#include "enums.h"
 #include "inventory.h"
 #include "item.h"
 #include "optional.h"
@@ -29,6 +27,7 @@
 #include "string_id.h"
 #include "material.h"
 #include "type_id.h"
+#include "point.h"
 
 TEST_CASE( "recipe_subset" )
 {
@@ -180,10 +179,10 @@ TEST_CASE( "available_recipes", "[recipes]" )
         }
     }
 
-    GIVEN( "an eink pc with a cannibal recipe" ) {
-        const recipe *r2 = &recipe_id( "soup_human" ).obj();
+    GIVEN( "an eink pc with a sushi recipe" ) {
+        const recipe *r2 = &recipe_id( "sushi_rice" ).obj();
         item &eink = dummy.i_add( item( "eink_tablet_pc" ) );
-        eink.set_var( "EIPC_RECIPES", ",soup_human," );
+        eink.set_var( "EIPC_RECIPES", ",sushi_rice," );
         REQUIRE_FALSE( dummy.knows_recipe( r2 ) );
 
         WHEN( "the player holds it and has an appropriate skill" ) {
@@ -219,7 +218,7 @@ TEST_CASE( "crafting_with_a_companion", "[.]" )
     REQUIRE( r->skill_used );
 
     GIVEN( "a companion who can help with crafting" ) {
-        standard_npc who( "helper", {}, 0 );
+        standard_npc who( "helper" );
 
         who.set_attitude( NPCATT_FOLLOW );
         who.spawn_at_sm( 0, 0, 0 );
@@ -261,156 +260,29 @@ TEST_CASE( "crafting_with_a_companion", "[.]" )
 static void prep_craft( const recipe_id &rid, const std::vector<item> &tools,
                         bool expect_craftable )
 {
-    clear_player();
+    clear_avatar();
     clear_map();
 
     const tripoint test_origin( 60, 60, 0 );
     g->u.setpos( test_origin );
     const item backpack( "backpack" );
     g->u.wear( g->u.i_add( backpack ), false );
-    for( const item gear : tools ) {
+    for( const item &gear : tools ) {
         g->u.i_add( gear );
     }
 
     const recipe &r = rid.obj();
 
-    const requirement_data &reqs = r.requirements();
-    inventory crafting_inv = g->u.crafting_inventory();
-    bool can_craft = reqs.can_make_with_inventory( g->u.crafting_inventory(),
-                     r.get_component_filter() );
+    const inventory &crafting_inv = g->u.crafting_inventory();
+    bool can_craft = r.deduped_requirements().can_make_with_inventory(
+                         crafting_inv, r.get_component_filter() );
     CHECK( can_craft == expect_craftable );
 }
 
-// This fakes a craft in a reasonable way which is fast
-static void fake_test_craft( const recipe_id &rid, const std::vector<item> &tools,
-                             bool expect_craftable )
-{
-    prep_craft( rid, tools, expect_craftable );
-    if( expect_craftable ) {
-        g->u.make_craft_with_command( rid, 1, false );
-        g->u.invalidate_crafting_inventory();
-    }
-}
+static time_point midnight = calendar::turn_zero + 0_hours;
+static time_point midday = calendar::turn_zero + 12_hours;
 
-TEST_CASE( "charge_handling" )
-{
-    SECTION( "carver" ) {
-        std::vector<item> tools;
-        tools.emplace_back( "hotplate", -1, 20 );
-        tools.emplace_back( "soldering_iron", -1, 20 );
-        tools.insert( tools.end(), 10, item( "solder_wire" ) );
-        tools.emplace_back( "screwdriver" );
-        tools.emplace_back( "mold_plastic" );
-        tools.insert( tools.end(), 6, item( "plastic_chunk" ) );
-        tools.insert( tools.end(), 2, item( "blade" ) );
-        tools.insert( tools.end(), 5, item( "cable" ) );
-        tools.emplace_back( "motor_tiny" );
-        tools.emplace_back( "power_supply" );
-        tools.emplace_back( "scrap" );
-
-        fake_test_craft( recipe_id( "carver_off" ), tools, true );
-        CHECK( get_remaining_charges( "hotplate" ) == 10 );
-        CHECK( get_remaining_charges( "soldering_iron" ) == 10 );
-    }
-    SECTION( "carver_split_charges" ) {
-        std::vector<item> tools;
-        tools.emplace_back( "hotplate", -1, 5 );
-        tools.emplace_back( "hotplate", -1, 5 );
-        tools.emplace_back( "soldering_iron", -1, 5 );
-        tools.emplace_back( "soldering_iron", -1, 5 );
-        tools.insert( tools.end(), 10, item( "solder_wire" ) );
-        tools.emplace_back( "screwdriver" );
-        tools.emplace_back( "mold_plastic" );
-        tools.insert( tools.end(), 6, item( "plastic_chunk" ) );
-        tools.insert( tools.end(), 2, item( "blade" ) );
-        tools.insert( tools.end(), 5, item( "cable" ) );
-        tools.emplace_back( "motor_tiny" );
-        tools.emplace_back( "power_supply" );
-        tools.emplace_back( "scrap" );
-
-        fake_test_craft( recipe_id( "carver_off" ), tools, true );
-        CHECK( get_remaining_charges( "hotplate" ) == 0 );
-        CHECK( get_remaining_charges( "soldering_iron" ) == 0 );
-    }
-    SECTION( "UPS_modded_carver" ) {
-        std::vector<item> tools;
-        item hotplate( "hotplate", -1, 0 );
-        hotplate.contents.emplace_back( "battery_ups" );
-        tools.push_back( hotplate );
-        item soldering_iron( "soldering_iron", -1, 0 );
-        tools.insert( tools.end(), 10, item( "solder_wire" ) );
-        soldering_iron.contents.emplace_back( "battery_ups" );
-        tools.push_back( soldering_iron );
-        tools.emplace_back( "screwdriver" );
-        tools.emplace_back( "mold_plastic" );
-        tools.insert( tools.end(), 6, item( "plastic_chunk" ) );
-        tools.insert( tools.end(), 2, item( "blade" ) );
-        tools.insert( tools.end(), 5, item( "cable" ) );
-        tools.emplace_back( "motor_tiny" );
-        tools.emplace_back( "power_supply" );
-        tools.emplace_back( "scrap" );
-        tools.emplace_back( "UPS_off", -1, 500 );
-
-        fake_test_craft( recipe_id( "carver_off" ), tools, true );
-        CHECK( get_remaining_charges( "hotplate" ) == 0 );
-        CHECK( get_remaining_charges( "soldering_iron" ) == 0 );
-        CHECK( get_remaining_charges( "UPS_off" ) == 480 );
-    }
-    SECTION( "UPS_modded_carver_missing_charges" ) {
-        std::vector<item> tools;
-        item hotplate( "hotplate", -1, 0 );
-        hotplate.contents.emplace_back( "battery_ups" );
-        tools.push_back( hotplate );
-        item soldering_iron( "soldering_iron", -1, 0 );
-        tools.insert( tools.end(), 10, item( "solder_wire" ) );
-        soldering_iron.contents.emplace_back( "battery_ups" );
-        tools.push_back( soldering_iron );
-        tools.emplace_back( "screwdriver" );
-        tools.emplace_back( "mold_plastic" );
-        tools.insert( tools.end(), 6, item( "plastic_chunk" ) );
-        tools.insert( tools.end(), 2, item( "blade" ) );
-        tools.insert( tools.end(), 5, item( "cable" ) );
-        tools.emplace_back( "motor_tiny" );
-        tools.emplace_back( "power_supply" );
-        tools.emplace_back( "scrap" );
-        tools.emplace_back( "UPS_off", -1, 10 );
-
-        fake_test_craft( recipe_id( "carver_off" ), tools, false );
-    }
-}
-
-TEST_CASE( "tool_use" )
-{
-    SECTION( "clean_water" ) {
-        std::vector<item> tools;
-        tools.emplace_back( "hotplate", -1, 20 );
-        item plastic_bottle( "bottle_plastic" );
-        plastic_bottle.contents.emplace_back( "water", -1, 2 );
-        tools.push_back( plastic_bottle );
-        tools.emplace_back( "pot" );
-
-        fake_test_craft( recipe_id( "water_clean" ), tools, true );
-    }
-    SECTION( "clean_water_in_occupied_cooking_vessel" ) {
-        std::vector<item> tools;
-        tools.emplace_back( "hotplate", -1, 20 );
-        item plastic_bottle( "bottle_plastic" );
-        plastic_bottle.contents.emplace_back( "water", -1, 2 );
-        tools.push_back( plastic_bottle );
-        item jar( "jar_glass" );
-        // If it's not watertight the water will spill.
-        REQUIRE( jar.is_watertight_container() );
-        jar.contents.emplace_back( "water", -1, 2 );
-        tools.push_back( jar );
-
-        fake_test_craft( recipe_id( "water_clean" ), tools, false );
-    }
-}
-
-static constexpr int midnight = HOURS( 0 );
-static constexpr int midday = HOURS( 12 );
-
-static void set_time( int time )
+static void set_time( const time_point &time )
 {
     calendar::turn = time;
     g->reset_light_level();
@@ -449,6 +321,122 @@ static int actually_test_craft( const recipe_id &rid, const std::vector<item> &t
         g->u.activity.do_turn( g->u );
     }
     return turns;
+}
+
+TEST_CASE( "charge_handling", "[crafting]" )
+{
+    SECTION( "carver" ) {
+        std::vector<item> tools;
+        tools.emplace_back( "hotplate", -1, 20 );
+        tools.emplace_back( "soldering_iron", -1, 20 );
+        tools.insert( tools.end(), 10, item( "solder_wire" ) );
+        tools.emplace_back( "screwdriver" );
+        tools.emplace_back( "mold_plastic" );
+        tools.insert( tools.end(), 6, item( "plastic_chunk" ) );
+        tools.insert( tools.end(), 2, item( "blade" ) );
+        tools.insert( tools.end(), 5, item( "cable" ) );
+        tools.emplace_back( "motor_tiny" );
+        tools.emplace_back( "power_supply" );
+        tools.emplace_back( "scrap" );
+
+        actually_test_craft( recipe_id( "carver_off" ), tools, INT_MAX );
+        CHECK( get_remaining_charges( "hotplate" ) == 10 );
+        CHECK( get_remaining_charges( "soldering_iron" ) == 10 );
+    }
+    SECTION( "carver_split_charges" ) {
+        std::vector<item> tools;
+        tools.emplace_back( "hotplate", -1, 5 );
+        tools.emplace_back( "hotplate", -1, 5 );
+        tools.emplace_back( "soldering_iron", -1, 5 );
+        tools.emplace_back( "soldering_iron", -1, 5 );
+        tools.insert( tools.end(), 10, item( "solder_wire" ) );
+        tools.emplace_back( "screwdriver" );
+        tools.emplace_back( "mold_plastic" );
+        tools.insert( tools.end(), 6, item( "plastic_chunk" ) );
+        tools.insert( tools.end(), 2, item( "blade" ) );
+        tools.insert( tools.end(), 5, item( "cable" ) );
+        tools.emplace_back( "motor_tiny" );
+        tools.emplace_back( "power_supply" );
+        tools.emplace_back( "scrap" );
+
+        actually_test_craft( recipe_id( "carver_off" ), tools, INT_MAX );
+        CHECK( get_remaining_charges( "hotplate" ) == 0 );
+        CHECK( get_remaining_charges( "soldering_iron" ) == 0 );
+    }
+    SECTION( "UPS_modded_carver" ) {
+        std::vector<item> tools;
+        item hotplate( "hotplate", -1, 0 );
+        hotplate.contents.emplace_back( "battery_ups" );
+        tools.push_back( hotplate );
+        item soldering_iron( "soldering_iron", -1, 0 );
+        tools.insert( tools.end(), 10, item( "solder_wire" ) );
+        soldering_iron.contents.emplace_back( "battery_ups" );
+        tools.push_back( soldering_iron );
+        tools.emplace_back( "screwdriver" );
+        tools.emplace_back( "mold_plastic" );
+        tools.insert( tools.end(), 6, item( "plastic_chunk" ) );
+        tools.insert( tools.end(), 2, item( "blade" ) );
+        tools.insert( tools.end(), 5, item( "cable" ) );
+        tools.emplace_back( "motor_tiny" );
+        tools.emplace_back( "power_supply" );
+        tools.emplace_back( "scrap" );
+        tools.emplace_back( "UPS_off", -1, 500 );
+
+        actually_test_craft( recipe_id( "carver_off" ), tools, INT_MAX );
+        CHECK( get_remaining_charges( "hotplate" ) == 0 );
+        CHECK( get_remaining_charges( "soldering_iron" ) == 0 );
+        CHECK( get_remaining_charges( "UPS_off" ) == 480 );
+    }
+    SECTION( "UPS_modded_carver_missing_charges" ) {
+        std::vector<item> tools;
+        item hotplate( "hotplate", -1, 0 );
+        hotplate.contents.emplace_back( "battery_ups" );
+        tools.push_back( hotplate );
+        item soldering_iron( "soldering_iron", -1, 0 );
+        tools.insert( tools.end(), 10, item( "solder_wire" ) );
+        soldering_iron.contents.emplace_back( "battery_ups" );
+        tools.push_back( soldering_iron );
+        tools.emplace_back( "screwdriver" );
+        tools.emplace_back( "mold_plastic" );
+        tools.insert( tools.end(), 6, item( "plastic_chunk" ) );
+        tools.insert( tools.end(), 2, item( "blade" ) );
+        tools.insert( tools.end(), 5, item( "cable" ) );
+        tools.emplace_back( "motor_tiny" );
+        tools.emplace_back( "power_supply" );
+        tools.emplace_back( "scrap" );
+        tools.emplace_back( "UPS_off", -1, 10 );
+
+        prep_craft( recipe_id( "carver_off" ), tools, false );
+    }
+}
+
+TEST_CASE( "tool_use", "[crafting]" )
+{
+    SECTION( "clean_water" ) {
+        std::vector<item> tools;
+        tools.emplace_back( "hotplate", -1, 20 );
+        item plastic_bottle( "bottle_plastic" );
+        plastic_bottle.contents.emplace_back( "water", -1, 2 );
+        tools.push_back( plastic_bottle );
+        tools.emplace_back( "pot" );
+
+        // Can't actually test crafting here since crafting a liquid currently causes a ui prompt
+        prep_craft( recipe_id( "water_clean" ), tools, true );
+    }
+    SECTION( "clean_water_in_occupied_cooking_vessel" ) {
+        std::vector<item> tools;
+        tools.emplace_back( "hotplate", -1, 20 );
+        item plastic_bottle( "bottle_plastic" );
+        plastic_bottle.contents.emplace_back( "water", -1, 2 );
+        tools.push_back( plastic_bottle );
+        item jar( "jar_glass" );
+        // If it's not watertight the water will spill.
+        REQUIRE( jar.is_watertight_container() );
+        jar.contents.emplace_back( "water", -1, 2 );
+        tools.push_back( jar );
+
+        prep_craft( recipe_id( "water_clean" ), tools, false );
+    }
 }
 
 // Resume the first in progress craft found in the player's inventory
@@ -496,7 +484,7 @@ static void verify_inventory( const std::vector<std::string> &has,
     }
 }
 
-TEST_CASE( "crafting_interruption" )
+TEST_CASE( "crafting_interruption", "[crafting]" )
 {
     std::vector<item> tools;
     tools.emplace_back( "hammer" );

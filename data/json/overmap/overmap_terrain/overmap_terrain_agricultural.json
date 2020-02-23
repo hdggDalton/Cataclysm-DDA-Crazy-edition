@@ -5,7 +5,88 @@
     "copy-from": "generic_city_building_no_sidewalk",
     "name": "sugar house",
     "sym": "S",
+    "color": "i_brown",
+    "extend": { "flags": [ "SOURCE_FOOD", "SOURCE_SAFETY", "RISK_LOW" ] }
+  },
+  {
+    "type": "overmap_terrain",
+    "id": "sugar_house_roof",
+    "copy-from": "generic_city_building_no_sidewalk",
+    "name": "sugar house roof",
+    "sym": "S",
     "color": "i_brown"
+  },
+  {
+    "type": "overmap_terrain",
+    "id": "rural_road",
+    "name": "rural road",
+    "sym": "│",
+    "color": "brown",
+    "see_cost": 5,
+    "mondensity": 2
+  },
+  {
+    "type": "overmap_terrain",
+    "id": "rural_road_3way",
+    "name": "rural road",
+    "sym": "┬",
+    "color": "brown",
+    "see_cost": 5,
+    "mondensity": 2
+  },
+  {
+    "type": "overmap_terrain",
+    "id": "rural_road_turn",
+    "name": "rural road",
+    "sym": "┐",
+    "color": "brown",
+    "see_cost": 5,
+    "mondensity": 2
+  },
+  {
+    "type": "overmap_terrain",
+    "id": "rural_road_turn1",
+    "name": "rural road",
+    "sym": "┌",
+    "color": "brown",
+    "see_cost": 5,
+    "mondensity": 2
+  },
+  {
+    "type": "overmap_terrain",
+    "id": "rural_road_forest",
+    "name": "rural road",
+    "sym": "│",
+    "color": "brown",
+    "see_cost": 5,
+    "mondensity": 2
+  },
+  {
+    "type": "overmap_terrain",
+    "id": "rural_road_turn_forest",
+    "name": "rural road",
+    "sym": "┐",
+    "color": "brown",
+    "see_cost": 5,
+    "mondensity": 2
+  },
+  {
+    "type": "overmap_terrain",
+    "id": "rural_road_turn1_forest",
+    "name": "rural road",
+    "sym": "┌",
+    "color": "brown",
+    "see_cost": 5,
+    "mondensity": 2
+  },
+  {
+    "type": "overmap_terrain",
+    "id": "rural_road_3way_forest",
+    "name": "rural road",
+    "sym": "┬",
+    "color": "brown",
+    "see_cost": 5,
+    "mondensity": 2
   },
   {
     "type": "overmap_terrain",
@@ -14,7 +95,6 @@
     "sym": "#",
     "color": "i_brown",
     "see_cost": 5,
-    "extras": "field",
     "mondensity": 2
   },
   {
@@ -25,7 +105,8 @@
     "color": "i_brown",
     "see_cost": 5,
     "extras": "build",
-    "mondensity": 2
+    "mondensity": 2,
+    "flags": [ "SOURCE_FOOD", "SOURCE_SAFETY", "RISK_LOW", "SOURCE_FARMING" ]
   },
   {
     "type": "overmap_terrain",
@@ -44,7 +125,6 @@
     "sym": "#",
     "color": "i_brown",
     "see_cost": 5,
-    "extras": "field",
     "mondensity": 2
   },
   {
@@ -54,7 +134,6 @@
     "sym": "#",
     "color": "i_brown",
     "see_cost": 5,
-    "extras": "field",
     "mondensity": 2
   },
   {
@@ -64,7 +143,6 @@
     "sym": "#",
     "color": "i_brown",
     "see_cost": 5,
-    "extras": "field",
     "mondensity": 2
   },
   {
@@ -74,7 +152,6 @@
     "sym": "#",
     "color": "i_brown",
     "see_cost": 5,
-    "extras": "field",
     "mondensity": 2
   },
   {
@@ -84,7 +161,6 @@
     "sym": "#",
     "color": "i_brown",
     "see_cost": 5,
-    "extras": "field",
     "mondensity": 2
   },
   {
@@ -94,7 +170,6 @@
     "sym": "#",
     "color": "i_brown",
     "see_cost": 5,
-    "extras": "field",
     "mondensity": 2
   },
   {
@@ -104,7 +179,6 @@
     "sym": "#",
     "color": "i_brown",
     "see_cost": 5,
-    "extras": "field",
     "mondensity": 2
   },
   {
@@ -114,7 +188,6 @@
     "sym": "#",
     "color": "i_brown",
     "see_cost": 5,
-    "extras": "field",
     "mondensity": 2
   },
   {
@@ -124,7 +197,6 @@
     "sym": "#",
     "color": "i_brown",
     "see_cost": 5,
-    "extras": "field",
     "mondensity": 2
   },
   {
@@ -134,7 +206,6 @@
     "sym": "#",
     "color": "i_brown",
     "see_cost": 5,
-    "extras": "field",
     "mondensity": 2
   },
   {
@@ -144,7 +215,15 @@
     "sym": "#",
     "color": "i_brown",
     "see_cost": 5,
-    "extras": "field",
+    "mondensity": 2
+  },
+  {
+    "type": "overmap_terrain",
+    "id": "2farm_roof_3",
+    "name": "farm",
+    "sym": "#",
+    "color": "i_brown",
+    "see_cost": 5,
     "mondensity": 2
   },
   {
@@ -154,7 +233,15 @@
     "sym": "#",
     "color": "i_brown",
     "see_cost": 5,
-    "extras": "field",
+    "mondensity": 2
+  },
+  {
+    "type": "overmap_terrain",
+    "id": "2farm_roof_4",
+    "name": "farm",
+    "sym": "#",
+    "color": "i_brown",
+    "see_cost": 5,
     "mondensity": 2
   },
   {
@@ -164,7 +251,6 @@
     "sym": "#",
     "color": "i_brown",
     "see_cost": 5,
-    "extras": "field",
     "mondensity": 2
   },
   {
@@ -174,7 +260,6 @@
     "sym": "#",
     "color": "i_brown",
     "see_cost": 5,
-    "extras": "field",
     "mondensity": 2
   },
   {
@@ -184,7 +269,6 @@
     "sym": "#",
     "color": "i_brown",
     "see_cost": 5,
-    "extras": "field",
     "mondensity": 2
   },
   {
@@ -194,7 +278,6 @@
     "sym": "#",
     "color": "i_brown",
     "see_cost": 5,
-    "extras": "field",
     "mondensity": 2
   },
   {
@@ -204,7 +287,6 @@
     "sym": "#",
     "color": "i_brown",
     "see_cost": 5,
-    "extras": "field",
     "mondensity": 2
   },
   {
@@ -214,7 +296,6 @@
     "sym": "#",
     "color": "i_brown",
     "see_cost": 5,
-    "extras": "field",
     "mondensity": 2
   },
   {
@@ -224,7 +305,16 @@
     "sym": "^",
     "color": "i_brown",
     "see_cost": 5,
-    "extras": "field",
+    "mondensity": 2,
+    "flags": [ "SOURCE_FOOD", "SOURCE_SAFETY", "RISK_LOW", "SOURCE_FARMING" ]
+  },
+  {
+    "type": "overmap_terrain",
+    "id": "2farm_roof_11",
+    "name": "farm house",
+    "sym": "^",
+    "color": "i_brown",
+    "see_cost": 5,
     "mondensity": 2
   },
   {
@@ -234,7 +324,6 @@
     "sym": "#",
     "color": "i_brown",
     "see_cost": 5,
-    "extras": "field",
     "mondensity": 2
   },
   {
@@ -244,7 +333,6 @@
     "sym": "#",
     "color": "i_brown",
     "see_cost": 5,
-    "extras": "field",
     "mondensity": 2
   },
   {
@@ -254,7 +342,6 @@
     "sym": "#",
     "color": "i_brown",
     "see_cost": 5,
-    "extras": "field",
     "mondensity": 2
   },
   {
@@ -264,7 +351,15 @@
     "sym": "#",
     "color": "i_brown",
     "see_cost": 5,
-    "extras": "field",
+    "mondensity": 2
+  },
+  {
+    "type": "overmap_terrain",
+    "id": "2farm_roof_15",
+    "name": "farm field",
+    "sym": "#",
+    "color": "i_brown",
+    "see_cost": 5,
     "mondensity": 2
   },
   {
@@ -274,7 +369,6 @@
     "sym": "#",
     "color": "i_brown",
     "see_cost": 5,
-    "extras": "field",
     "mondensity": 2
   },
   {
@@ -284,7 +378,6 @@
     "sym": "#",
     "color": "i_brown",
     "see_cost": 5,
-    "extras": "field",
     "mondensity": 2
   },
   {
@@ -294,7 +387,6 @@
     "sym": "#",
     "color": "i_brown",
     "see_cost": 5,
-    "extras": "field",
     "mondensity": 2
   },
   {
@@ -304,8 +396,8 @@
     "sym": "^",
     "color": "i_brown",
     "see_cost": 5,
-    "extras": "field",
-    "mondensity": 2
+    "mondensity": 2,
+    "flags": [ "SOURCE_FOOD", "SOURCE_SAFETY", "RISK_LOW", "SOURCE_FARMING" ]
   },
   {
     "type": "overmap_terrain",
@@ -314,7 +406,6 @@
     "sym": "#",
     "color": "i_brown",
     "see_cost": 5,
-    "extras": "field",
     "mondensity": 2
   },
   {
@@ -324,7 +415,6 @@
     "sym": "#",
     "color": "i_brown",
     "see_cost": 5,
-    "extras": "field",
     "mondensity": 2
   },
   {
@@ -334,7 +424,6 @@
     "sym": "#",
     "color": "i_brown",
     "see_cost": 5,
-    "extras": "field",
     "mondensity": 2
   },
   {
@@ -344,7 +433,6 @@
     "sym": "#",
     "color": "brown",
     "see_cost": 5,
-    "extras": "field",
     "mondensity": 2
   },
   {
@@ -354,7 +442,6 @@
     "sym": "#",
     "color": "i_brown",
     "see_cost": 5,
-    "extras": "field",
     "mondensity": 2
   },
   {
@@ -364,7 +451,6 @@
     "sym": "#",
     "color": "i_brown",
     "see_cost": 5,
-    "extras": "field",
     "mondensity": 2
   },
   {
@@ -374,7 +460,6 @@
     "sym": "#",
     "color": "i_brown",
     "see_cost": 5,
-    "extras": "field",
     "mondensity": 2
   },
   {
@@ -384,7 +469,6 @@
     "sym": "#",
     "color": "brown",
     "see_cost": 5,
-    "extras": "field",
     "mondensity": 2
   },
   {
@@ -394,7 +478,6 @@
     "sym": "#",
     "color": "i_brown",
     "see_cost": 5,
-    "extras": "field",
     "mondensity": 2
   },
   {
@@ -404,9 +487,7 @@
     "sym": "T",
     "color": "light_green",
     "see_cost": 5,
-    "extras": "field",
-    "mondensity": 3,
-    "flags": [ "NO_ROTATE" ]
+    "mondensity": 3
   },
   {
     "type": "overmap_terrain",
@@ -415,9 +496,7 @@
     "sym": "T",
     "color": "i_light_green",
     "see_cost": 5,
-    "extras": "field",
-    "mondensity": 3,
-    "flags": [ "NO_ROTATE" ]
+    "mondensity": 3
   },
   {
     "type": "overmap_terrain",
@@ -426,9 +505,7 @@
     "sym": "T",
     "color": "i_light_green",
     "see_cost": 5,
-    "extras": "field",
-    "mondensity": 3,
-    "flags": [ "NO_ROTATE" ]
+    "mondensity": 3
   },
   {
     "id": "dairy_farm_NW",
@@ -437,7 +514,7 @@
     "sym": "w",
     "color": "brown",
     "see_cost": 1,
-    "flags": [ "SIDEWALK", "NO_ROTATE" ]
+    "flags": [ "SIDEWALK", "SOURCE_FOOD", "SOURCE_DRINK", "SOURCE_SAFETY", "SOURCE_ANIMALS", "RISK_LOW", "SOURCE_FARMING" ]
   },
   {
     "id": "dairy_farm_NE",
@@ -446,7 +523,7 @@
     "sym": "w",
     "color": "brown",
     "see_cost": 1,
-    "flags": [ "SIDEWALK", "NO_ROTATE" ]
+    "flags": [ "SIDEWALK" ]
   },
   {
     "id": "dairy_farm_SE",
@@ -455,7 +532,16 @@
     "sym": "w",
     "color": "brown",
     "see_cost": 5,
-    "flags": [ "SIDEWALK", "NO_ROTATE" ]
+    "flags": [ "SIDEWALK" ]
+  },
+  {
+    "id": "dairy_farm_SE_roof",
+    "type": "overmap_terrain",
+    "name": "dairy farm roof",
+    "sym": "w",
+    "color": "brown",
+    "see_cost": 5,
+    "flags": [ "SIDEWALK" ]
   },
   {
     "id": "dairy_farm_SW",
@@ -464,7 +550,430 @@
     "sym": "w",
     "color": "brown",
     "see_cost": 5,
-    "flags": [ "SIDEWALK", "NO_ROTATE" ]
+    "flags": [ "SIDEWALK" ]
+  },
+  {
+    "id": "dairy_farm_SW_roof",
+    "type": "overmap_terrain",
+    "name": "dairy farm roof",
+    "sym": "w",
+    "color": "brown",
+    "see_cost": 5,
+    "flags": [ "SIDEWALK" ]
+  },
+  {
+    "id": "dairy_farm_isherwood_W",
+    "type": "overmap_terrain",
+    "name": "dairy farm",
+    "sym": "w",
+    "color": "brown",
+    "see_cost": 1,
+    "flags": [ "SIDEWALK" ]
+  },
+  {
+    "id": "dairy_farm_isherwood_E",
+    "type": "overmap_terrain",
+    "name": "dairy farm",
+    "sym": "w",
+    "color": "brown",
+    "see_cost": 1,
+    "flags": [ "SIDEWALK" ]
+  },
+  {
+    "id": "dairy_farm_isherwood_SE",
+    "type": "overmap_terrain",
+    "name": "dairy farm",
+    "sym": "w",
+    "color": "brown",
+    "see_cost": 5,
+    "flags": [ "SIDEWALK" ]
+  },
+  {
+    "id": "dairy_farm_isherwood_SE_roof",
+    "type": "overmap_terrain",
+    "name": "dairy farm roof",
+    "sym": "w",
+    "color": "brown",
+    "see_cost": 5,
+    "flags": [ "SIDEWALK" ]
+  },
+  {
+    "id": "dairy_farm_isherwood_SW",
+    "type": "overmap_terrain",
+    "name": "dairy farm",
+    "sym": "w",
+    "color": "brown",
+    "see_cost": 5,
+    "flags": [ "SIDEWALK" ]
+  },
+  {
+    "id": "dairy_farm_isherwood_SW_roof",
+    "type": "overmap_terrain",
+    "name": "dairy farm roof",
+    "sym": "w",
+    "color": "brown",
+    "see_cost": 5,
+    "flags": [ "SIDEWALK" ]
+  },
+  {
+    "id": "smokehouse",
+    "type": "overmap_terrain",
+    "name": "smokehouse",
+    "sym": "u",
+    "color": "brown",
+    "see_cost": 5
+  },
+  {
+    "id": "smokehouse_roof",
+    "type": "overmap_terrain",
+    "name": "smokehouse roof",
+    "sym": "#",
+    "color": "brown",
+    "see_cost": 5
+  },
+  {
+    "id": "rural_outbuilding",
+    "type": "overmap_terrain",
+    "name": "outbuilding",
+    "sym": "#",
+    "color": "brown",
+    "see_cost": 5
+  },
+  {
+    "id": "rural_outbuilding_roof",
+    "type": "overmap_terrain",
+    "name": "outbuilding roof",
+    "sym": "u",
+    "color": "brown",
+    "see_cost": 5
+  },
+  {
+    "type": "overmap_terrain",
+    "id": "farm_isherwood_1",
+    "name": "farm field",
+    "sym": "#",
+    "color": "i_brown",
+    "see_cost": 5,
+    "mondensity": 2
+  },
+  {
+    "type": "overmap_terrain",
+    "id": "farm_isherwood_2",
+    "name": "farm house",
+    "sym": "^",
+    "color": "i_brown",
+    "see_cost": 5,
+    "extras": "build",
+    "mondensity": 2
+  },
+  {
+    "type": "overmap_terrain",
+    "id": "farm_isherwood_2_cellar",
+    "name": "farm house cellar",
+    "sym": "O",
+    "color": "i_brown",
+    "see_cost": 5,
+    "extras": "build",
+    "mondensity": 2
+  },
+  {
+    "type": "overmap_terrain",
+    "id": "farm_isherwood_2_roof",
+    "name": "farm house roof",
+    "sym": "^",
+    "color": "i_brown",
+    "see_cost": 5,
+    "extras": "build",
+    "mondensity": 2
+  },
+  {
+    "type": "overmap_terrain",
+    "id": "farm_isherwood_3",
+    "name": "farm barn",
+    "sym": "#",
+    "color": "i_brown",
+    "see_cost": 5,
+    "mondensity": 2
+  },
+  {
+    "type": "overmap_terrain",
+    "id": "farm_isherwood_3_hayloft",
+    "name": "farm barn hayloft",
+    "sym": "#",
+    "color": "i_brown",
+    "see_cost": 5,
+    "mondensity": 2
+  },
+  {
+    "type": "overmap_terrain",
+    "id": "farm_isherwood_3_roof",
+    "name": "farm barn roof",
+    "sym": "#",
+    "color": "i_brown",
+    "see_cost": 5,
+    "mondensity": 2
+  },
+  {
+    "type": "overmap_terrain",
+    "id": "farm_isherwood_4",
+    "name": "farm field",
+    "sym": "#",
+    "color": "i_brown",
+    "see_cost": 5,
+    "mondensity": 2
+  },
+  {
+    "type": "overmap_terrain",
+    "id": "farm_isherwood_5",
+    "name": "farm field",
+    "sym": "#",
+    "color": "i_brown",
+    "see_cost": 5,
+    "mondensity": 2
+  },
+  {
+    "type": "overmap_terrain",
+    "id": "farm_isherwood_6",
+    "name": "farm field",
+    "sym": "#",
+    "color": "i_brown",
+    "see_cost": 5,
+    "mondensity": 2
+  },
+  {
+    "type": "overmap_terrain",
+    "id": "farm_isherwood_7",
+    "name": "farm field",
+    "sym": "#",
+    "color": "i_brown",
+    "see_cost": 5,
+    "mondensity": 2
+  },
+  {
+    "type": "overmap_terrain",
+    "id": "farm_isherwood_8",
+    "name": "farm field",
+    "sym": "#",
+    "color": "i_brown",
+    "see_cost": 5,
+    "mondensity": 2
+  },
+  {
+    "type": "overmap_terrain",
+    "id": "farm_isherwood_9",
+    "name": "farm field",
+    "sym": "#",
+    "color": "i_brown",
+    "see_cost": 5,
+    "mondensity": 2
+  },
+  {
+    "type": "overmap_terrain",
+    "id": "horse_farm_isherwood_1",
+    "name": "farm field",
+    "sym": "#",
+    "color": "i_brown",
+    "see_cost": 5,
+    "mondensity": 2
+  },
+  {
+    "type": "overmap_terrain",
+    "id": "horse_farm_isherwood_2",
+    "name": "farm field",
+    "sym": "#",
+    "color": "i_brown",
+    "see_cost": 5,
+    "extras": "build",
+    "mondensity": 2
+  },
+  {
+    "type": "overmap_terrain",
+    "id": "horse_farm_isherwood_3",
+    "name": "farm field",
+    "sym": "#",
+    "color": "i_brown",
+    "see_cost": 5,
+    "mondensity": 2
+  },
+  {
+    "type": "overmap_terrain",
+    "id": "horse_farm_isherwood_4",
+    "name": "carriage house",
+    "sym": "o",
+    "color": "i_brown",
+    "see_cost": 5,
+    "mondensity": 2
+  },
+  {
+    "type": "overmap_terrain",
+    "id": "horse_farm_isherwood_4_roof",
+    "name": "carriage house roof",
+    "sym": "o",
+    "color": "i_brown",
+    "see_cost": 5,
+    "mondensity": 2
+  },
+  {
+    "type": "overmap_terrain",
+    "id": "horse_farm_isherwood_5",
+    "name": "farm field",
+    "sym": "#",
+    "color": "i_brown",
+    "see_cost": 5,
+    "mondensity": 2
+  },
+  {
+    "type": "overmap_terrain",
+    "id": "horse_farm_isherwood_6",
+    "name": "farm field",
+    "sym": "#",
+    "color": "i_brown",
+    "see_cost": 5,
+    "mondensity": 2
+  },
+  {
+    "type": "overmap_terrain",
+    "id": "horse_farm_isherwood_7",
+    "name": "horse stable",
+    "sym": "&",
+    "color": "i_brown",
+    "see_cost": 5,
+    "mondensity": 2
+  },
+  {
+    "type": "overmap_terrain",
+    "id": "horse_farm_isherwood_7_hayloft",
+    "name": "horse stable hayloft",
+    "sym": "&",
+    "color": "i_brown",
+    "see_cost": 5,
+    "mondensity": 2
+  },
+  {
+    "type": "overmap_terrain",
+    "id": "horse_farm_isherwood_7_roof",
+    "name": "horse stable roof",
+    "sym": "&",
+    "color": "i_brown",
+    "see_cost": 5,
+    "mondensity": 2
+  },
+  {
+    "type": "overmap_terrain",
+    "id": "horse_farm_isherwood_8",
+    "name": "farm field",
+    "sym": "#",
+    "color": "i_brown",
+    "see_cost": 5,
+    "mondensity": 2
+  },
+  {
+    "type": "overmap_terrain",
+    "id": "horse_farm_isherwood_9",
+    "name": "green house",
+    "sym": "o",
+    "color": "i_brown",
+    "see_cost": 5,
+    "mondensity": 2
+  },
+  {
+    "type": "overmap_terrain",
+    "id": "horse_farm_isherwood_9_roof",
+    "name": "green house roof",
+    "sym": "o",
+    "color": "i_brown",
+    "see_cost": 5,
+    "mondensity": 2
+  },
+  {
+    "type": "overmap_terrain",
+    "id": "horse_farm_isherwood_10",
+    "name": "chicken coop",
+    "sym": "o",
+    "color": "i_brown",
+    "see_cost": 5,
+    "mondensity": 2
+  },
+  {
+    "type": "overmap_terrain",
+    "id": "horse_farm_isherwood_10_roof",
+    "name": "chicken coop roof",
+    "sym": "o",
+    "color": "i_brown",
+    "see_cost": 5,
+    "mondensity": 2
+  },
+  {
+    "type": "overmap_terrain",
+    "id": "horse_farm_isherwood_11",
+    "name": "farm field",
+    "sym": "#",
+    "color": "i_brown",
+    "see_cost": 5,
+    "mondensity": 2
+  },
+  {
+    "type": "overmap_terrain",
+    "id": "horse_farm_isherwood_12",
+    "name": "farm field",
+    "sym": "#",
+    "color": "i_brown",
+    "see_cost": 5,
+    "mondensity": 2
+  },
+  {
+    "type": "overmap_terrain",
+    "id": "horse_farm_isherwood_13",
+    "name": "farm house",
+    "sym": "^",
+    "color": "i_brown",
+    "see_cost": 5,
+    "mondensity": 2
+  },
+  {
+    "type": "overmap_terrain",
+    "id": "horse_farm_isherwood_13_2ndfloor",
+    "name": "farm house 2nd floor",
+    "sym": "^",
+    "color": "i_brown",
+    "see_cost": 5,
+    "mondensity": 2
+  },
+  {
+    "type": "overmap_terrain",
+    "id": "horse_farm_isherwood_13_roof",
+    "name": "farm house roof",
+    "sym": "^",
+    "color": "i_brown",
+    "see_cost": 5,
+    "mondensity": 2
+  },
+  {
+    "type": "overmap_terrain",
+    "id": "horse_farm_isherwood_14",
+    "name": "farm field",
+    "sym": "#",
+    "color": "i_brown",
+    "see_cost": 5,
+    "mondensity": 2
+  },
+  {
+    "type": "overmap_terrain",
+    "id": "horse_farm_isherwood_15",
+    "name": "farm field",
+    "sym": "#",
+    "color": "i_brown",
+    "see_cost": 5,
+    "mondensity": 2
+  },
+  {
+    "type": "overmap_terrain",
+    "id": "horse_farm_isherwood_16",
+    "name": "farm field",
+    "sym": "#",
+    "color": "i_brown",
+    "see_cost": 5,
+    "mondensity": 2
   },
   {
     "id": "cemetery_small",
@@ -480,7 +989,8 @@
     "copy-from": "generic_city_building",
     "name": "orchard",
     "sym": "#",
-    "color": "i_green"
+    "color": "i_green",
+    "extend": { "flags": [ "SOURCE_FOOD" ] }
   },
   {
     "type": "overmap_terrain",
@@ -492,12 +1002,51 @@
   },
   {
     "type": "overmap_terrain",
+    "id": "moonshine_still_roof",
+    "copy-from": "generic_city_building_no_sidewalk",
+    "name": "moonshine still roof",
+    "sym": "S",
+    "color": "i_brown"
+  },
+  {
+    "type": "overmap_terrain",
+    "id": "moonshine_still_1",
+    "copy-from": "generic_city_building_no_sidewalk",
+    "name": "moonshine still",
+    "sym": "S",
+    "color": "i_brown"
+  },
+  {
+    "type": "overmap_terrain",
+    "id": "moonshine_still_roof_1",
+    "copy-from": "generic_city_building_no_sidewalk",
+    "name": "moonshine still roof",
+    "sym": "S",
+    "color": "i_brown"
+  },
+  {
+    "type": "overmap_terrain",
+    "id": "moonshine_still_2",
+    "copy-from": "generic_city_building_no_sidewalk",
+    "name": "moonshine still",
+    "sym": "S",
+    "color": "i_brown"
+  },
+  {
+    "type": "overmap_terrain",
+    "id": "moonshine_still_roof_2",
+    "copy-from": "generic_city_building_no_sidewalk",
+    "name": "moonshine still roof",
+    "sym": "S",
+    "color": "i_brown"
+  },
+  {
+    "type": "overmap_terrain",
     "id": "TreeFarm_1b",
     "name": "tree farm",
     "sym": "T",
     "color": "i_green",
     "see_cost": 5,
-    "extras": "field",
     "mondensity": 2
   },
   {
@@ -507,7 +1056,6 @@
     "sym": "#",
     "color": "i_brown",
     "see_cost": 5,
-    "extras": "field",
     "mondensity": 2
   },
   {
@@ -527,7 +1075,6 @@
     "sym": "#",
     "color": "i_brown",
     "see_cost": 5,
-    "extras": "field",
     "mondensity": 2
   },
   {
@@ -537,7 +1084,6 @@
     "sym": "o",
     "color": "i_brown",
     "see_cost": 5,
-    "extras": "field",
     "mondensity": 2
   },
   {
@@ -547,7 +1093,6 @@
     "sym": "o",
     "color": "i_brown",
     "see_cost": 5,
-    "extras": "field",
     "mondensity": 2
   },
   {
@@ -557,7 +1102,6 @@
     "sym": "#",
     "color": "i_brown",
     "see_cost": 5,
-    "extras": "field",
     "mondensity": 2
   },
   {
@@ -567,7 +1111,6 @@
     "sym": "#",
     "color": "i_brown",
     "see_cost": 5,
-    "extras": "field",
     "mondensity": 2
   },
   {
@@ -577,7 +1120,6 @@
     "sym": "&",
     "color": "i_brown",
     "see_cost": 5,
-    "extras": "field",
     "mondensity": 2
   },
   {
@@ -587,7 +1129,6 @@
     "sym": "&",
     "color": "i_brown",
     "see_cost": 5,
-    "extras": "field",
     "mondensity": 2
   },
   {
@@ -597,7 +1138,6 @@
     "sym": "&",
     "color": "i_brown",
     "see_cost": 5,
-    "extras": "field",
     "mondensity": 2
   },
   {
@@ -607,7 +1147,6 @@
     "sym": "#",
     "color": "i_brown",
     "see_cost": 5,
-    "extras": "field",
     "mondensity": 2
   },
   {
@@ -617,7 +1156,6 @@
     "sym": "o",
     "color": "i_brown",
     "see_cost": 5,
-    "extras": "field",
     "mondensity": 2
   },
   {
@@ -627,7 +1165,6 @@
     "sym": "o",
     "color": "i_brown",
     "see_cost": 5,
-    "extras": "field",
     "mondensity": 2
   },
   {
@@ -637,7 +1174,6 @@
     "sym": "o",
     "color": "i_brown",
     "see_cost": 5,
-    "extras": "field",
     "mondensity": 2
   },
   {
@@ -647,7 +1183,6 @@
     "sym": "o",
     "color": "i_brown",
     "see_cost": 5,
-    "extras": "field",
     "mondensity": 2
   },
   {
@@ -657,7 +1192,6 @@
     "sym": "#",
     "color": "i_brown",
     "see_cost": 5,
-    "extras": "field",
     "mondensity": 2
   },
   {
@@ -667,7 +1201,6 @@
     "sym": "#",
     "color": "i_brown",
     "see_cost": 5,
-    "extras": "field",
     "mondensity": 2
   },
   {
@@ -677,8 +1210,8 @@
     "sym": "^",
     "color": "i_brown",
     "see_cost": 5,
-    "extras": "field",
-    "mondensity": 2
+    "mondensity": 2,
+    "flags": [ "SOURCE_FOOD", "SOURCE_SAFETY", "RISK_LOW", "SOURCE_ANIMALS", "SOURCE_FARMING" ]
   },
   {
     "type": "overmap_terrain",
@@ -687,7 +1220,6 @@
     "sym": "^",
     "color": "i_brown",
     "see_cost": 5,
-    "extras": "field",
     "mondensity": 2
   },
   {
@@ -697,7 +1229,6 @@
     "sym": "^",
     "color": "i_brown",
     "see_cost": 5,
-    "extras": "field",
     "mondensity": 2
   },
   {
@@ -707,7 +1238,6 @@
     "sym": "#",
     "color": "i_brown",
     "see_cost": 5,
-    "extras": "field",
     "mondensity": 2
   },
   {
@@ -717,7 +1247,6 @@
     "sym": "#",
     "color": "i_brown",
     "see_cost": 5,
-    "extras": "field",
     "mondensity": 2
   },
   {
@@ -727,7 +1256,6 @@
     "sym": "#",
     "color": "i_brown",
     "see_cost": 5,
-    "extras": "field",
     "mondensity": 2
   },
   {
@@ -737,7 +1265,6 @@
     "sym": "#",
     "color": "i_brown",
     "see_cost": 5,
-    "extras": "field",
     "mondensity": 2
   },
   {
@@ -747,7 +1274,6 @@
     "sym": "#",
     "color": "i_brown",
     "see_cost": 5,
-    "extras": "field",
     "mondensity": 2
   },
   {
@@ -757,7 +1283,6 @@
     "sym": "#",
     "color": "i_brown",
     "see_cost": 5,
-    "extras": "field",
     "mondensity": 2
   },
   {
@@ -767,7 +1292,6 @@
     "sym": "#",
     "color": "i_brown",
     "see_cost": 5,
-    "extras": "field",
     "mondensity": 2
   },
   {
@@ -777,7 +1301,6 @@
     "sym": "#",
     "color": "i_brown",
     "see_cost": 5,
-    "extras": "field",
     "mondensity": 2
   },
   {
@@ -787,7 +1310,6 @@
     "sym": "#",
     "color": "i_brown",
     "see_cost": 5,
-    "extras": "field",
     "mondensity": 2
   },
   {
@@ -797,7 +1319,6 @@
     "sym": "#",
     "color": "i_brown",
     "see_cost": 5,
-    "extras": "field",
     "mondensity": 2
   },
   {
@@ -807,7 +1328,6 @@
     "sym": "#",
     "color": "i_brown",
     "see_cost": 5,
-    "extras": "field",
     "mondensity": 2
   },
   {
@@ -817,7 +1337,6 @@
     "sym": "#",
     "color": "i_brown",
     "see_cost": 5,
-    "extras": "field",
     "mondensity": 2
   },
   {
@@ -827,7 +1346,6 @@
     "sym": "#",
     "color": "i_brown",
     "see_cost": 5,
-    "extras": "field",
     "mondensity": 2
   },
   {
@@ -837,7 +1355,6 @@
     "sym": "#",
     "color": "i_brown",
     "see_cost": 5,
-    "extras": "field",
     "mondensity": 2
   },
   {
@@ -847,7 +1364,6 @@
     "sym": "│",
     "color": "brown",
     "see_cost": 5,
-    "extras": "field",
     "mondensity": 2
   },
   {
@@ -857,7 +1373,6 @@
     "sym": "┬",
     "color": "brown",
     "see_cost": 5,
-    "extras": "field",
     "mondensity": 2
   },
   {
@@ -867,7 +1382,6 @@
     "sym": "┐",
     "color": "brown",
     "see_cost": 5,
-    "extras": "field",
     "mondensity": 2
   },
   {
@@ -877,7 +1391,6 @@
     "sym": "┌",
     "color": "brown",
     "see_cost": 5,
-    "extras": "field",
     "mondensity": 2
   },
   {
@@ -887,7 +1400,6 @@
     "sym": "│",
     "color": "brown",
     "see_cost": 5,
-    "extras": "field",
     "mondensity": 2
   },
   {
@@ -897,7 +1409,6 @@
     "sym": "┐",
     "color": "brown",
     "see_cost": 5,
-    "extras": "field",
     "mondensity": 2
   },
   {
@@ -907,7 +1418,6 @@
     "sym": "┌",
     "color": "brown",
     "see_cost": 5,
-    "extras": "field",
     "mondensity": 2
   },
   {
@@ -917,7 +1427,6 @@
     "sym": "┬",
     "color": "brown",
     "see_cost": 5,
-    "extras": "field",
     "mondensity": 2
   },
   {
@@ -967,7 +1476,6 @@
     "sym": "#",
     "color": "brown",
     "see_cost": 5,
-    "extras": "field",
     "mondensity": 2
   },
   {
@@ -977,7 +1485,6 @@
     "sym": "#",
     "color": "brown",
     "see_cost": 5,
-    "extras": "field",
     "mondensity": 2
   },
   {
@@ -988,7 +1495,8 @@
     "color": "i_brown",
     "see_cost": 5,
     "extras": "build",
-    "mondensity": 2
+    "mondensity": 2,
+    "flags": [ "SOURCE_FOOD", "SOURCE_SAFETY", "RISK_LOW", "SOURCE_FARMING" ]
   },
   {
     "type": "overmap_terrain",
@@ -999,5 +1507,175 @@
     "see_cost": 5,
     "extras": "build",
     "mondensity": 2
+  },
+  {
+    "type": "overmap_terrain",
+    "id": "farm_dairy_twd_1",
+    "name": "farm",
+    "sym": "#",
+    "color": "i_brown",
+    "see_cost": 5,
+    "mondensity": 2,
+    "flags": [ "SOURCE_FOOD", "SOURCE_SAFETY", "RISK_LOW", "SOURCE_FARMING" ]
+  },
+  {
+    "type": "overmap_terrain",
+    "id": "farm_dairy_twd_2",
+    "name": "farm",
+    "sym": "#",
+    "color": "i_brown",
+    "see_cost": 5,
+    "mondensity": 2,
+    "flags": [ "SOURCE_FOOD", "SOURCE_SAFETY", "RISK_LOW", "SOURCE_FARMING" ]
+  },
+  {
+    "type": "overmap_terrain",
+    "id": "farm_dairy_twd_3",
+    "name": "farm",
+    "sym": "#",
+    "color": "i_brown",
+    "see_cost": 5,
+    "mondensity": 2,
+    "flags": [ "SOURCE_FOOD", "SOURCE_SAFETY", "RISK_LOW", "SOURCE_FARMING" ]
+  },
+  {
+    "type": "overmap_terrain",
+    "id": "farm_dairy_twd_4",
+    "name": "farm house",
+    "sym": "^",
+    "color": "i_brown",
+    "see_cost": 5,
+    "mondensity": 2,
+    "flags": [ "SOURCE_FOOD", "SOURCE_SAFETY", "RISK_LOW", "SOURCE_FARMING" ]
+  },
+  {
+    "type": "overmap_terrain",
+    "id": "farm_dairy_twd_5",
+    "name": "farm",
+    "sym": "#",
+    "color": "i_brown",
+    "see_cost": 5,
+    "mondensity": 2,
+    "flags": [ "SOURCE_FOOD", "SOURCE_SAFETY", "RISK_LOW", "SOURCE_FARMING" ]
+  },
+  {
+    "type": "overmap_terrain",
+    "id": "farm_dairy_twd_6",
+    "name": "barn",
+    "sym": "^",
+    "color": "i_brown",
+    "see_cost": 5,
+    "mondensity": 2,
+    "flags": [ "SOURCE_FOOD", "SOURCE_SAFETY", "RISK_LOW", "SOURCE_FARMING" ]
+  },
+  {
+    "type": "overmap_terrain",
+    "id": "farm_dairy_twd_7",
+    "name": "farm",
+    "sym": "┬",
+    "color": "i_brown",
+    "see_cost": 5,
+    "mondensity": 2,
+    "flags": [ "SOURCE_FOOD", "SOURCE_SAFETY", "RISK_LOW", "SOURCE_FARMING" ]
+  },
+  {
+    "type": "overmap_terrain",
+    "id": "farm_dairy_twd_8",
+    "name": "farm",
+    "sym": "┘",
+    "color": "i_brown",
+    "see_cost": 5,
+    "mondensity": 2,
+    "flags": [ "SOURCE_FOOD", "SOURCE_SAFETY", "RISK_LOW", "SOURCE_FARMING" ]
+  },
+  {
+    "type": "overmap_terrain",
+    "id": "farm_dairy_twd_9",
+    "name": "farm",
+    "sym": "#",
+    "color": "i_brown",
+    "see_cost": 5,
+    "mondensity": 2,
+    "flags": [ "SOURCE_FOOD", "SOURCE_SAFETY", "RISK_LOW", "SOURCE_FARMING" ]
+  },
+  {
+    "type": "overmap_terrain",
+    "id": "farm_dairy_twd_10",
+    "name": "farm",
+    "sym": "#",
+    "color": "i_brown",
+    "see_cost": 5,
+    "mondensity": 2,
+    "flags": [ "SOURCE_FOOD", "SOURCE_SAFETY", "RISK_LOW", "SOURCE_FARMING" ]
+  },
+  {
+    "type": "overmap_terrain",
+    "id": "farm_dairy_twd_11",
+    "name": "farm road",
+    "sym": "│",
+    "color": "i_brown",
+    "see_cost": 5,
+    "mondensity": 2,
+    "flags": [ "SOURCE_FOOD", "SOURCE_SAFETY", "RISK_LOW", "SOURCE_FARMING" ]
+  },
+  {
+    "type": "overmap_terrain",
+    "id": "farm_dairy_twd_12",
+    "name": "barn",
+    "sym": "^",
+    "color": "i_brown",
+    "see_cost": 5,
+    "mondensity": 2,
+    "flags": [ "SOURCE_FOOD", "SOURCE_SAFETY", "RISK_LOW", "SOURCE_FARMING" ]
+  },
+  {
+    "type": "overmap_terrain",
+    "id": "farm_dairy_twd_second_floor_3",
+    "name": "farm house 2nd floor",
+    "sym": "^",
+    "color": "i_brown",
+    "see_cost": 5,
+    "mondensity": 2,
+    "flags": [ "SOURCE_FOOD", "SOURCE_SAFETY", "RISK_LOW", "SOURCE_FARMING" ]
+  },
+  {
+    "type": "overmap_terrain",
+    "id": "farm_dairy_twd_second_floor_4",
+    "name": "farm house 2nd floor",
+    "sym": "^",
+    "color": "i_brown",
+    "see_cost": 5,
+    "mondensity": 2,
+    "flags": [ "SOURCE_FOOD", "SOURCE_SAFETY", "RISK_LOW", "SOURCE_FARMING" ]
+  },
+  {
+    "type": "overmap_terrain",
+    "id": "farm_dairy_twd_second_floor_5",
+    "name": "barn roof",
+    "sym": "^",
+    "color": "i_brown",
+    "see_cost": 5,
+    "mondensity": 2,
+    "flags": [ "SOURCE_FOOD", "SOURCE_SAFETY", "RISK_LOW", "SOURCE_FARMING" ]
+  },
+  {
+    "type": "overmap_terrain",
+    "id": "farm_dairy_twd_second_floor_6",
+    "name": "barn roof",
+    "sym": "^",
+    "color": "i_brown",
+    "see_cost": 5,
+    "mondensity": 2,
+    "flags": [ "SOURCE_FOOD", "SOURCE_SAFETY", "RISK_LOW", "SOURCE_FARMING" ]
+  },
+  {
+    "type": "overmap_terrain",
+    "id": "farm_dairy_twd_second_floor_12",
+    "name": "barn roof",
+    "sym": "^",
+    "color": "i_brown",
+    "see_cost": 5,
+    "mondensity": 2,
+    "flags": [ "SOURCE_FOOD", "SOURCE_SAFETY", "RISK_LOW", "SOURCE_FARMING" ]
   }
 ]

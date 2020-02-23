@@ -12,6 +12,7 @@
 #include "profession.h"
 #include "translations.h"
 #include "rng.h"
+#include "cata_string_consts.h"
 
 namespace
 {
@@ -33,42 +34,49 @@ bool string_id<scenario>::is_valid() const
     return all_scenarios.is_valid( *this );
 }
 
+scen_blacklist sc_blacklist;
+
 scenario::scenario()
-    : id( "" ), _name_male( "null" ), _name_female( "null" ),
-      _description_male( "null" ), _description_female( "null" )
+    : id( "" ), _name_male( no_translation( "null" ) ),
+      _name_female( no_translation( "null" ) ),
+      _description_male( no_translation( "null" ) ),
+      _description_female( no_translation( "null" ) )
 {
 }
 
-void scenario::load_scenario( JsonObject &jo, const std::string &src )
+void scenario::load_scenario( const JsonObject &jo, const std::string &src )
 {
     all_scenarios.load( jo, src );
 }
 
-void scenario::load( JsonObject &jo, const std::string & )
+void scenario::load( const JsonObject &jo, const std::string & )
 {
     // TODO: pretty much the same as in profession::load, but different contexts for pgettext.
     // TODO: maybe combine somehow?
     if( !was_loaded || jo.has_string( "name" ) ) {
         // These may differ depending on the language settings!
         const std::string name = jo.get_string( "name" );
-        _name_female = pgettext( "scenario_female", name.c_str() );
-        _name_male = pgettext( "scenario_male", name.c_str() );
+        _name_female = to_translation( "scenario_female", name );
+        _name_male = to_translation( "scenario_male", name );
     }
 
     if( !was_loaded || jo.has_string( "description" ) ) {
         // These also may differ depending on the language settings!
         const std::string desc = jo.get_string( "description" );
-        _description_male = pgettext( "scen_desc_male", desc.c_str() );
-        _description_female = pgettext( "scen_desc_female", desc.c_str() );
+        _description_male = to_translation( "scen_desc_male", desc );
+        _description_female = to_translation( "scen_desc_female", desc );
     }
 
     if( !was_loaded || jo.has_string( "start_name" ) ) {
-        _start_name = pgettext( "start_name", jo.get_string( "start_name" ).c_str() );
+        // Specifying translation context here and above to avoid adding unnecessary json code for every scenario
+        // NOLINTNEXTLINE(cata-json-translation-input)
+        _start_name = to_translation( "start_name", jo.get_string( "start_name" ) );
     }
 
     mandatory( jo, was_loaded, "points", _point_cost );
 
     optional( jo, was_loaded, "blacklist_professions", blacklist );
+    optional( jo, was_loaded, "add_professions", extra_professions );
     optional( jo, was_loaded, "professions", professions,
               auto_flags_reader<string_id<profession>> {} );
 
@@ -124,6 +132,7 @@ void scenario::check_definitions()
     for( const auto &scen : all_scenarios.get_all() ) {
         scen.check_definition();
     }
+    sc_blacklist.finalize();
 }
 
 static void check_traits( const std::set<trait_id> &traits, const string_id<scenario> &ident )
@@ -187,18 +196,18 @@ const string_id<scenario> &scenario::ident() const
 std::string scenario::gender_appropriate_name( bool male ) const
 {
     if( male ) {
-        return _name_male;
+        return _name_male.translated();
     } else {
-        return _name_female;
+        return _name_female.translated();
     }
 }
 
 std::string scenario::description( bool male ) const
 {
     if( male ) {
-        return _description_male;
+        return _description_male.translated();
     } else {
-        return _description_female;
+        return _description_female.translated();
     }
 }
 
@@ -216,6 +225,70 @@ start_location_id scenario::random_start_location() const
     return random_entry( _allowed_locs );
 }
 
+bool scenario::scen_is_blacklisted() const
+{
+    return sc_blacklist.scenarios.count( id ) != 0;
+}
+
+void scen_blacklist::load_scen_blacklist( const JsonObject &jo, const std::string &src )
+{
+    sc_blacklist.load( jo, src );
+}
+
+void scen_blacklist::load( const JsonObject &jo, const std::string & )
+{
+    if( !scenarios.empty() ) {
+        jo.throw_error( "Attempted to load scenario blacklist with an existing scenario blacklist" );
+    }
+
+    const std::string bl_stype = jo.get_string( "subtype" );
+
+    if( bl_stype == "whitelist" ) {
+        whitelist = true;
+    } else if( bl_stype == "blacklist" ) {
+        whitelist = false;
+    } else {
+        jo.throw_error( "Blacklist subtype is not a valid subtype." );
+    }
+
+    for( const std::string &line : jo.get_array( "scenarios" ) ) {
+        scenarios.emplace( line );
+    }
+}
+
+void scen_blacklist::finalize()
+{
+    std::vector<string_id<scenario>> all_scens;
+    for( const scenario &scen : scenario::get_all() ) {
+        all_scens.emplace_back( scen.ident() );
+    }
+    for( const string_id<scenario> &sc : sc_blacklist.scenarios ) {
+        if( std::find( all_scens.begin(), all_scens.end(), sc ) == all_scens.end() ) {
+            debugmsg( "Scenario blacklist contains invalid scenario" );
+        }
+    }
+
+    if( sc_blacklist.whitelist ) {
+        std::set<string_id<scenario>> listed_scenarios = sc_blacklist.scenarios;
+        sc_blacklist.scenarios.clear();
+        for( const scenario &scen : scenario::get_all() ) {
+            sc_blacklist.scenarios.insert( scen.ident() );
+        }
+        for( auto i = sc_blacklist.scenarios.begin(); i != sc_blacklist.scenarios.end(); ) {
+            if( listed_scenarios.count( *i ) != 0 ) {
+                i = sc_blacklist.scenarios.erase( i );
+            } else {
+                ++i;
+            }
+        }
+    }
+}
+
+void reset_scenarios_blacklist()
+{
+    sc_blacklist.scenarios.clear();
+}
+
 std::vector<string_id<profession>> scenario::permitted_professions() const
 {
     if( !cached_permitted_professions.empty() ) {
@@ -228,7 +301,11 @@ std::vector<string_id<profession>> scenario::permitted_professions() const
         const bool present = std::find( professions.begin(), professions.end(),
                                         p.ident() ) != professions.end();
         if( blacklist || professions.empty() ) {
-            if( !present && !p.has_flag( "SCEN_ONLY" ) ) {
+            if( !present && !p.has_flag( flag_SCEN_ONLY ) ) {
+                res.push_back( p.ident() );
+            }
+        } else if( extra_professions ) {
+            if( present || !p.has_flag( flag_SCEN_ONLY ) ) {
                 res.push_back( p.ident() );
             }
         } else if( present ) {
@@ -271,7 +348,7 @@ std::string scenario::prof_count_str() const
 
 std::string scenario::start_name() const
 {
-    return _start_name;
+    return _start_name.translated();
 }
 
 bool scenario::traitquery( const trait_id &trait ) const

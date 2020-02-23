@@ -6,7 +6,6 @@
 
 #include "type_id.h"
 
-using itype_id = std::string;
 class JsonIn;
 class JsonOut;
 
@@ -32,7 +31,7 @@ struct npc_favor {
         skill = skill_id::NULL_ID();
     }
 
-    void serialize( JsonOut &jsout ) const;
+    void serialize( JsonOut &json ) const;
     void deserialize( JsonIn &jsin );
 };
 

@@ -9,10 +9,10 @@
       "You can close an opened door by pressing 'c' and then a movement key.  Closing doors behind you can often slow down throngs of monsters greatly.",
       "Most monsters will have to smash their way through a closed door.  If a door is locked or stuck, you can smash it by pressing 's' and then a movement key.",
       "You can smash through windows by pressing 's' and then a movement key.  A smashed window takes a long time to climb through, and it's possible to hurt yourself on the broken glass, but it's a good last-ditch escape route.  You can smash through other things, too.",
-      "You just stepped on a space with one or more items.  If you wish to pick it up, press ',' or 'g'.",
-      "The nearby { is a display rack, and the blue background indicates that there are items there.  If you examine the square by pressing 'e', you can pick up items without moving to the square.",
-      "The Examine command is useful for grabbing items off window frames, around corners, etc.  It's also used for interacting with a few terrain types.  Interactive terrain is usually designated with a '6' symbol.",
-      "You don't have space in your inventory to store the item you just tried to pick up.  You need to wear something with storage space, like a backpack or cargo pants, to gain more storage space.",
+      "You just stepped on a space with one or more items.  If you wish to pick it up, press 'g'.",
+      "The nearby { is a display rack, and the blue background indicates that there are items there.  If you press 'g' while adjacent to the rack, you can pick up items without moving to the square.",
+      "The Examine command 'e' can be used for interacting with some terrain and furniture.  Interactive terrain is often designated with a '6' symbol.",
+      "You don't have space in your inventory to store the item you just tried to pick up.  You need to wear something with storage space, like a backpack or cargo pants, to gain more storage space.  Items can be worn with 'W'.",
       "The item you just picked up has been wielded as a weapon automatically.  This happened because you do not have space in your inventory to stash the item, and so you must carry it in your hand.  To expand your inventory space, try wearing clothing with a lot of storage space, like a backpack, or cargo pants.",
       "The item you just picked up has been wielded as a weapon automatically.  This happened because it is a good melee weapon, and you were empty-handed.  This usually is faster than than picking it up, then wielding it.",
       "The item you just picked up went into your inventory, the shared storage space of all the clothing you're wearing.  To view your inventory, press 'i'.  You can then press the letter of any item to get more information about it.",
@@ -32,7 +32,7 @@
       "That drug you just took is a painkiller.  Painkillers are very important to keep on hand, as pain both penalizes your stats and makes you slower.  Be careful, as the stronger painkillers can make you woozy, and some are even addictive.",
       "That drug you just took placed an effect on you.  To check your effects, press '@'.  Most only last a short while, while others, like chronic disease, last until cured by some other means.",
       "You just drank a bottle of water, reducing your thirst level and reducing the water level in the bottle.  You'll probably want to drop empty bottles, or you might want to save them to refill from a water source later.",
-      "You just activated a grenade!  You probably want to throw it.  To throw an item, press 't' and then select the item to throw.  The maximum range depends on your strength and the object's weight and size.  Throwing isn't very good in most combat situations, but if you've got some fire power...",
+      "You just activated a grenade!  You probably want to throw it.  To throw an item, press 't' and then select the item to throw.  The maximum range depends on your strength and the object's weight and size.  Throwing isn't very good in most combat situations, but if you've got some fire power…",
       "You just placed a trap.  Traps are permanent until set off, and can be an important defensive tactic, particularly when sleeping in unsafe territory.  Try stepping on that _ -- don't worry, it's a harmless bubblewrap trap.",
       "You're carrying more volume than you have storage for, which means you are carrying some stuff in the crook of your arm or in some other awkward manner.  While overloaded like this, you will suffer SEVERE encumbrance penalties, making combat dangerous.  Either drop an item, or possibly wield something-- the object you are wielding does not take up inventory space.",
       "To use a gun, first wield it with the 'w' key.  Next you need to reload using the 'r' key, assuming you have the proper ammo.  If you wish to unload your gun, possibly to change ammunition types, press 'U'.",
@@ -41,7 +41,7 @@
       "That yellow > next to you is a staircase leading down.  To go downstairs, step onto the staircase and press the '>' key.  Similarly, a yellow < is stairs leading up, and can be followed with the '<' key.",
       "It's dark down here!  Without a source of light, you'll be limited to seeing only one space in any direction.  You'll encounter darkness while underground or at night.  Press '<' to go back upstairs, and look around for a flashlight.",
       "It's dark down here!  Fortunately, you have a flashlight.  Press 'a' and then select your flashlight to turn it on.",
-      "~ is a terrain symbol that indicates water.  From a water source like this, you can fill any containers you might have. Examine the water ('e') and press 'c' to fill a container, then select a watertight container to put the water into."
+      "~ is a terrain symbol that indicates water.  From a water source like this, you can fill any containers you might have.  Examine the water ('e') and press 'c' to fill a container, then select a watertight container to put the water into."
     ]
   }
 ]
